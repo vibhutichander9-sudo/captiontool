@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Viral Caption Tool</title>
+
+<style>
+body {
+    background-color: #0f172a;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+    margin-top: 60px;
+}
+
+h1 {
+    color: #38bdf8;
+}
+
+textarea {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #38bdf8;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0ea5e9;
+}
+
+/* OUTPUT STYLE */
+#output {
+    margin-top: 40px;
+    font-size: 38px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    color: white;
+    text-shadow: 
+        2px 2px 0px black,
+        -2px -2px 0px black,
+        2px -2px 0px black,
+        -2px 2px 0px black;
+}
+
+/* ANIMATION */
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.animate {
+    animation: pop 0.4s ease;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Viral Caption Generator 🎬</h1>
+
+<p>Type your caption:</p>
+
+<textarea id="captionInput" rows="3" placeholder="type caption..."></textarea>
+
+<br>
+
+<!-- PRESETS -->
+<button onclick="rageStyle()">😡 Rage</button>
+<button onclick="motivationStyle()">🔥 Motivation</button>
+<button onclick="funnyStyle()">😂 Funny</button>
+<button onclick="sigmaStyle()">🧊 Sigma</button>
+
+<br>
+
+<button onclick="copyText()">📋 Copy</button>
+
+<div id="output"></div>
+
+<script>
+
+// GET TEXT
+function getText() {
+    return document.getElementById("captionInput").value;
+}
+
+// ANIMATION
+function animateOutput(output) {
+    output.classList.remove("animate");
+    void output.offsetWidth;
+    output.classList.add("animate");
+}
+
+// AUTO FORMAT (break lines)
+function formatText(text) {
+    let words = text.split(" ");
+    return words.join("<br>");
+}
+
+// 🔥 RAGE STYLE
+function rageStyle() {
+    let text = getText();
+    let output = document.getElementById("output");
+
+    output.innerHTML = "😡<br>" + formatText(text);
+    output.style.color = "#ff3b3b";
+
+    animateOutput(output);
+}
+
+// 🔥 MOTIVATION STYLE
+function motivationStyle() {
+    let text = getText();
+    let output = document.getElementById("output");
+
+    output.innerHTML = "🔥<br>" + formatText(text);
+    output.style.color = "#facc15";
+
+    animateOutput(output);
+}
+
+// 😂 FUNNY STYLE
+function funnyStyle() {
+    let text = getText();
+    let output = document.getElementById("output");
+
+    output.innerHTML = "😂<br>" + formatText(text);
+    output.style.color = "#22c55e";
+
+    animateOutput(output);
+}
+
+// 🧊 SIGMA STYLE
+function sigmaStyle() {
+    let text = getText();
+    let output = document.getElementById("output");
+
+    output.innerHTML = "🧊<br>" + formatText(text);
+    output.style.color = "#60a5fa";
+
+    animateOutput(output);
+}
+
+// COPY
+function copyText() {
+    let text = document.getElementById("output").innerText;
+    navigator.clipboard.writeText(text);
+    alert("Copied 🔥");
+}
+
+</script>
+
+</body>
+</html>
